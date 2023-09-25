@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7027268062061021476}
   - component: {fileID: 2296100705413894127}
   - component: {fileID: 5253025864017368014}
-  - component: {fileID: 7857156156334906377}
+  - component: {fileID: 4130127225933847492}
   - component: {fileID: 6858793169049026417}
   m_Layer: 0
   m_Name: BlueStringBacteria
@@ -111,7 +111,7 @@ MonoBehaviour:
   enableWobble: 1
   wobbleSpeed: 1
   maximumWobbleSize: 10
---- !u!58 &7857156156334906377
+--- !u!58 &4130127225933847492
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,7 +145,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.93
+  m_Radius: 9.38
 --- !u!50 &6858793169049026417
 Rigidbody2D:
   serializedVersion: 4
