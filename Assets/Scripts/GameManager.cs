@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : SingletonPersistent<GameManager>
 {
     [SerializeField] private float extraTimeScalePerSecond;
+    [SerializeField] private float maxTimeScale = 30;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,6 @@ public class GameManager : SingletonPersistent<GameManager>
     // Update is called once per frame
     void Update()
     {
-        Time.timeScale = Mathf.Clamp(1 + Time.timeSinceLevelLoad * extraTimeScalePerSecond, 0, 100);
+        Time.timeScale = Mathf.Clamp(1 + Time.timeSinceLevelLoad * extraTimeScalePerSecond, 0, maxTimeScale);
     }
 }

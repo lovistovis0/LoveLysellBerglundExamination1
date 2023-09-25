@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        playerRigidbody.AddForce(playerInput * accelerationSpeed * Time.fixedDeltaTime / 0.02f);
-        playerRigidbody.velocity = Vector2.ClampMagnitude(playerRigidbody.velocity, maxVelocity);
+        playerRigidbody.AddForce(playerInput * accelerationSpeed / Mathf.Pow(Time.timeScale, 1) * Time.fixedDeltaTime / 0.02f);
+        playerRigidbody.velocity = Vector2.ClampMagnitude(playerRigidbody.velocity, maxVelocity / Time.timeScale);
     }
 }

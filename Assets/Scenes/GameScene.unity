@@ -172,7 +172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66fc37c0878465d45984f0586b520fd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extraTimeScalePerSecond: 0.1
+  extraTimeScalePerSecond: 0.2
+  maxTimeScale: 60
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,7 +567,7 @@ CompositeCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728026116}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
