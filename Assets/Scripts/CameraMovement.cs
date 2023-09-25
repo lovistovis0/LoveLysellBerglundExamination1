@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 /// <summary>
 /// Handles camera movement.
 /// </summary>
-public class SmoothCameraFollow : MonoBehaviour
+public class CameraMovement : MonoBehaviour
 {
     // Target camera moves to
     [Header("Essentials")]

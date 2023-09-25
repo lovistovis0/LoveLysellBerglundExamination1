@@ -9,13 +9,21 @@ public class OrganismSpawner : MonoBehaviour
 {
     [SerializeField] private float spawnRadius;
     [SerializeField] private int spawnCount;
-    [SerializeField] private Organism[] organisms;
+    [SerializeField] private LootTableOrganism[] organisms;
+    [SerializeField] private ChanceOrganism[] spawnOverTime;
 
     [Serializable]
-    private struct Organism
+    private struct LootTableOrganism
     {
         public GameObject prefab;
         public int weight;
+    }
+    
+    [Serializable]
+    private struct ChanceOrganism
+    {
+        public GameObject prefab;
+        public float chance;
     }
     
     // Start is called before the first frame update
@@ -23,16 +31,14 @@ public class OrganismSpawner : MonoBehaviour
     {
         for (int i = 0; i < spawnCount; i++)
         {
-            Vector3 position = Random.insideUnitCircle * spawnRadius;
-            Quaternion rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
-            Instantiate(SelectEnemyPrefabFromLootTable(organisms), position, rotation);
+            RandomlySpawn(SelectEnemyPrefabFromLootTable(organisms));
         }
     }
     
-    GameObject SelectEnemyPrefabFromLootTable(Organism[] table) {
+    GameObject SelectEnemyPrefabFromLootTable(LootTableOrganism[] table) {
         if (table.Length == 0) return null;
         
-        Organism v;
+        LootTableOrganism v;
         int totalWeight = 0;
         for (int i = 0; i < table.Length; i++) {
             v = table[i];
@@ -57,10 +63,20 @@ public class OrganismSpawner : MonoBehaviour
         return chosenItem.prefab;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void RandomlySpawn(GameObject prefab)
     {
-        
+        Vector3 position = Random.insideUnitCircle * spawnRadius;
+        Quaternion rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
+        Instantiate(prefab, position, rotation);
+    }
+
+    // Update is called once per frame
+    private void FixedUpdate()
+    {
+        for (int i = 0; i < spawnOverTime.Length; i++)
+        {
+            if (Random.value < spawnOverTime[i].chance) RandomlySpawn(spawnOverTime[i].prefab);
+        }
     }
 
     private void OnDrawGizmos()

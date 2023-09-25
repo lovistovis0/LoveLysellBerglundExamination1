@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wobble : MonoBehaviour
+public class GameManager : SingletonPersistent<GameManager>
 {
+    [SerializeField] private float extraTimeScalePerSecond;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,7 +15,6 @@ public class Wobble : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // should probably make it so the things cant look bad
-        
+        Time.timeScale = Mathf.Clamp(1 + Time.timeSinceLevelLoad * extraTimeScalePerSecond, 0, 100);
     }
 }

@@ -17,6 +17,8 @@ public class Organism : MonoBehaviour
     [Header("ScaleChanger")]
     [SerializeField] private bool enableScaleChanger;
     [SerializeField] private string tagToScale;
+    [SerializeField] private float scaleToEffectMin;
+    [SerializeField] private float scaleToEffectMax;
     [SerializeField] private float scaleChangeMin;
     [SerializeField] private float scaleChangeMax;
     
@@ -50,10 +52,13 @@ public class Organism : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (enableScaleChanger && other.gameObject.CompareTag(tagToScale))
+        if (enableScaleChanger &&
+            other.gameObject.CompareTag(tagToScale) &&
+            other.transform.localScale.magnitude > scaleToEffectMin &&
+            other.transform.localScale.magnitude < scaleToEffectMax
+            )
         {
             other.transform.localScale *= Random.Range(scaleChangeMin, scaleChangeMax);
-            other.gameObject.tag = tag;
             Destroy(gameObject);
         }
     }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4675834888588143531}
   - component: {fileID: 4675834888588143530}
   m_Layer: 0
-  m_Name: RedBacteria
+  m_Name: BlueBacteria
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 06cfc8530699da742b25a2627e10ab1e, type: 3}
-  m_Color: {r: 0.5943396, g: 0.15363115, b: 0.18177056, a: 0.8235294}
+  m_Color: {r: 0, g: 0.2614131, b: 1, a: 0.8235294}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -104,10 +104,10 @@ MonoBehaviour:
   maxStartScale: 1
   enableScaleChanger: 1
   tagToScale: Scalable
-  scaleToEffectMin: 0
-  scaleToEffectMax: 3
-  scaleChangeMin: 1.5
-  scaleChangeMax: 2
+  scaleToEffectMin: 1.5
+  scaleToEffectMax: 1000
+  scaleChangeMin: 0.3
+  scaleChangeMax: 0.9
   enableSeek: 1
   seekTValue: 0.02
   enableWobble: 1
