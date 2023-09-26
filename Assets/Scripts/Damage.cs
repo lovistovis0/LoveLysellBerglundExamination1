@@ -9,7 +9,7 @@ public class Damage : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }    
+            GameManager.Instance.Die();
+        }
     }
 }

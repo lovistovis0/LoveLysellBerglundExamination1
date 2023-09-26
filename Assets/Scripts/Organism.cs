@@ -9,6 +9,7 @@ public class Organism : MonoBehaviour
     // Options
     [Header("Movement")]
     [SerializeField] private float movementRandomRange;
+    [SerializeField] private float maximumRotationSpeed;
     
     [Header("StartScale")]
     [SerializeField] private float minStartScale = 1;
@@ -29,8 +30,7 @@ public class Organism : MonoBehaviour
     [Header("Wobble")]
     [SerializeField] private bool enableWobble;
     [SerializeField] private float wobbleSpeed = 1f;
-    [SerializeField] private float maximumWobbleSize = 10f;
-    
+
     // Static References
     private Rigidbody2D organismRigidbody;
     private Transform playerTransform;
@@ -42,12 +42,6 @@ public class Organism : MonoBehaviour
         playerTransform = GameObject.FindWithTag("Player").transform;
 
         SetStartingScale();
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -66,6 +60,7 @@ public class Organism : MonoBehaviour
     private void FixedUpdate()
     {
         Movement();
+        LimitRotationSpeed();
         if (enableWobble) Wobble();
         if (enableSeek) Seek();
     }
@@ -87,9 +82,21 @@ public class Organism : MonoBehaviour
         organismRigidbody.MovePosition(organismRigidbody.position + new Vector2(Random.Range(-movementRandomRange, movementRandomRange), Random.Range(-movementRandomRange,movementRandomRange))); 
     }
 
+    private void LimitRotationSpeed()
+    {
+        organismRigidbody.angularVelocity = Mathf.Clamp(organismRigidbody.angularVelocity, -maximumRotationSpeed, maximumRotationSpeed);
+
+    }
+
     private void Wobble()
     {
         transform.localScale = transform.localScale + new Vector3(Random.Range(-.002f,.002f), Random.Range(-.002f,.002f), 0) * wobbleSpeed;
-        transform.localScale = Vector3.ClampMagnitude(transform.localScale, maximumWobbleSize);
+        
+        float averageScale = (transform.localScale.x + transform.localScale.y) * 0.5f;
+        transform.localScale = new Vector3(
+            Mathf.Clamp(transform.localScale.x, averageScale * 0.5f, averageScale * 1.5f),
+            Mathf.Clamp(transform.localScale.y, averageScale * 0.5f, averageScale * 1.5f),
+            transform.localScale.z
+        );
     }
 }

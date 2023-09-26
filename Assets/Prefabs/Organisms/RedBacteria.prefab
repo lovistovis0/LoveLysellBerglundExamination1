@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementRandomRange: 0.02
+  maximumRotationSpeed: 10
   minStartScale: 1
   maxStartScale: 1
   enableScaleChanger: 1
@@ -112,7 +113,6 @@ MonoBehaviour:
   seekTValue: 0.02
   enableWobble: 1
   wobbleSpeed: 2
-  maximumWobbleSize: 10
 --- !u!58 &4675834888588143531
 CircleCollider2D:
   m_ObjectHideFlags: 0

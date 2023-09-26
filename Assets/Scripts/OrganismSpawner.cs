@@ -48,7 +48,7 @@ public class OrganismSpawner : MonoBehaviour
         int choice = 0;
         int randomNumber = (int)Math.Floor(Random.value * totalWeight + 1);
         int weight = 0;
-        for(int i = 0; i < table.Length; i++) {
+        for (int i = 0; i < table.Length; i++) {
             v = table[i];
 
             weight += v.weight;

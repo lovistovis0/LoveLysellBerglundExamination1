@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementRandomRange: 0.01
+  maximumRotationSpeed: 10
   minStartScale: 1
   maxStartScale: 1
   enableScaleChanger: 0
@@ -113,7 +114,6 @@ MonoBehaviour:
   seekTValue: 0.01
   enableWobble: 0
   wobbleSpeed: 1
-  maximumWobbleSize: 10
 --- !u!114 &1047761302583546405
 MonoBehaviour:
   m_ObjectHideFlags: 0

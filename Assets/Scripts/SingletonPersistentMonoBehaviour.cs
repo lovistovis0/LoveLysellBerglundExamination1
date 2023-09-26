@@ -1,0 +1,1 @@
+public class SingletonPersistentMonoBehaviour : SingletonPersistent<SingletonPersistentMonoBehaviour> { }
