@@ -39,7 +39,8 @@ public class Organism : MonoBehaviour
     private void Start()
     {
         organismRigidbody = GetComponent<Rigidbody2D>();
-        playerTransform = GameObject.FindWithTag("Player").transform;
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null) playerTransform = player.transform;
 
         SetStartingScale();
     }
@@ -62,7 +63,7 @@ public class Organism : MonoBehaviour
         Movement();
         LimitRotationSpeed();
         if (enableWobble) Wobble();
-        if (enableSeek) Seek();
+        if (enableSeek && playerTransform != null) Seek();
     }
 
     private void SetStartingScale()
@@ -85,7 +86,6 @@ public class Organism : MonoBehaviour
     private void LimitRotationSpeed()
     {
         organismRigidbody.angularVelocity = Mathf.Clamp(organismRigidbody.angularVelocity, -maximumRotationSpeed, maximumRotationSpeed);
-
     }
 
     private void Wobble()

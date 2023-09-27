@@ -52,6 +52,14 @@ public class CameraMovement : MonoBehaviour
 	// Update is called once per frame
 	private void LateUpdate()
 	{
+		if (target == null) { return; }
+		
+		Movement();
+		if (targetRigdbody != null && enableZoom) Zoom();
+	}
+
+	private void Movement()
+	{
 		// Get player follow position
 		Vector3 targetPosition;
 
@@ -85,12 +93,12 @@ public class CameraMovement : MonoBehaviour
 		Vector3 delta = targetPosition - UnityEngine.Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z));
 		Vector3 destination = transform.position + delta;
 		transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
+	}
 
-		if (targetRigdbody != null && enableZoom)
-		{
-			float targetZoom = originalZoom + targetRigdbody.velocity.magnitude * zoomAmountPerVelocity;
-			UnityEngine.Camera.main.orthographicSize = Mathf.Lerp(UnityEngine.Camera.main.orthographicSize, targetZoom, zoomTValue);
-		}
+	private void Zoom()
+	{
+		float targetZoom = originalZoom + targetRigdbody.velocity.magnitude * zoomAmountPerVelocity;
+		UnityEngine.Camera.main.orthographicSize = Mathf.Lerp(UnityEngine.Camera.main.orthographicSize, targetZoom, zoomTValue);
 	}
 
 	private void OnDrawGizmos()

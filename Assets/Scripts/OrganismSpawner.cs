@@ -67,7 +67,7 @@ public class OrganismSpawner : MonoBehaviour
     {
         Vector3 position = Random.insideUnitCircle * spawnRadius;
         Quaternion rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
-        Instantiate(prefab, position, rotation);
+        Instantiate(prefab, transform.position + position, rotation, transform);
     }
 
     // Update is called once per frame
