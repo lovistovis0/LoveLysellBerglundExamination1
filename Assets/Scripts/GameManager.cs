@@ -13,18 +13,22 @@ public class GameManager : SingletonPersistent<GameManager>
     [SerializeField] private float maxTimeScale = 30;
 
     private TMP_Text timeText;
+
+    private float actualTime;
     
 
     // Update is called once per frame
     void Update()
     {
+        actualTime += Time.deltaTime / Time.timeScale;
+        
         if (SceneManager.GetActiveScene().buildIndex == gameSceneBuildIndex)
         {
             Time.timeScale = Mathf.Clamp(1 + Time.timeSinceLevelLoad * extraTimeScalePerSecond, 0, maxTimeScale);
 
             if (timeText != null)
             {
-                timeText.text = ((int)Time.timeSinceLevelLoad).ToString() + "S";
+                timeText.text = ((int)actualTime).ToString() + "s";
             }
         }
     }
@@ -32,7 +36,8 @@ public class GameManager : SingletonPersistent<GameManager>
     public void Die()
     {
         SceneManagerExtended.ReloadScene();
-        Invoke("GetTimeText", 0.04f);
+        actualTime = 0;
+        Invoke("GetTimeText", 0.1f);
     }
     
     public void Quit()
@@ -44,7 +49,7 @@ public class GameManager : SingletonPersistent<GameManager>
     {
         SceneManagerExtended.LoadScene(gameSceneBuildIndex);
         //GetTimeText();
-        Invoke("GetTimeText", 0.04f);
+        Invoke("GetTimeText", 0.1f);
     }
 
     private void GetTimeText()
