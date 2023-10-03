@@ -90,13 +90,16 @@ public class Organism : MonoBehaviour
 
     private void Wobble()
     {
-        transform.localScale = transform.localScale + new Vector3(Random.Range(-.002f,.002f), Random.Range(-.002f,.002f), 0) * wobbleSpeed;
+        Vector3 localScale = transform.localScale;
+        localScale = localScale + new Vector3(Random.Range(-.002f,.002f), Random.Range(-.002f,.002f), 0) * wobbleSpeed;
         
-        float averageScale = (transform.localScale.x + transform.localScale.y) * 0.5f;
-        transform.localScale = new Vector3(
-            Mathf.Clamp(transform.localScale.x, averageScale * 0.5f, averageScale * 1.5f),
-            Mathf.Clamp(transform.localScale.y, averageScale * 0.5f, averageScale * 1.5f),
-            transform.localScale.z
+        float averageScale = (localScale.x + localScale.y) * 0.5f;
+        localScale = new Vector3(
+            Mathf.Clamp(localScale.x, averageScale * 0.5f, averageScale * 1.5f),
+            Mathf.Clamp(localScale.y, averageScale * 0.5f, averageScale * 1.5f),
+            localScale.z
         );
+        
+        transform.localScale = localScale;
     }
 }
